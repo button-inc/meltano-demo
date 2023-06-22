@@ -3,5 +3,47 @@ default_environment: dev
 project_id: 7cb730e2-fcfc-425d-bfed-57d02a0c0686
 environments:
 - name: dev
+  config:
+    plugins:
+      extractors:
+      - name: tap-csv
+        pip_url: git+https://gitlab.com/meltano/tap-csv.git
+        variant: meltanolabs
+        config:
+          files:
+          - entity: bc_building_data
+            file: bc_building_data.csv
+            path: ./data/
+            delimiter: ";"
+            keys:
+            - OBJECTID
+            - Longitude
+            - Latitude
+            - CSDUID
+            - CSDNAME
+            - Data_prov
+            - Build_ID
+            - Shape_Leng
+            - Shape_Area
+          add_metadata_columns: false
+      loaders:
+      - name: target-postgres
+        variant: transferwise
+        pip_url: pipelinewise-target-postgres
+        config:
+          host: localhost
+          port: 5432
+          user: meltano
+          dbname: warehouse
+          default_target_schema: warehouse
 - name: staging
 - name: prod
+plugins:
+  extractors:
+  - name: tap-csv
+    variant: meltanolabs
+    pip_url: git+https://github.com/MeltanoLabs/tap-csv.git
+  loaders:
+  - name: target-postgres
+    variant: transferwise
+    pip_url: pipelinewise-target-postgres
