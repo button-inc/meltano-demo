@@ -27,3 +27,13 @@ Run the pipeline
 ```bash
 meltano run tap-csv target-postgres
 ```
+
+Check the database for your data
+```bash
+psql -d demo -U meltano
+```
+
+Meltano will create schema with the name of the data source and a table with the entity name
+```sql
+select count(*) from tap_csv.buildings;
+```

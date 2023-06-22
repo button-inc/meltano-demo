@@ -7,14 +7,11 @@ environments:
     plugins:
       extractors:
       - name: tap-csv
-        pip_url: git+https://gitlab.com/meltano/tap-csv.git
-        variant: meltanolabs
         config:
           files:
-          - entity: bc_building_data
-            file: bc_building_data.csv
+          - entity: buildings
+            file: buildings.csv
             path: ./data/
-            delimiter: ";"
             keys:
             - OBJECTID
             - Longitude
@@ -26,15 +23,15 @@ environments:
             - Shape_Leng
             - Shape_Area
           add_metadata_columns: false
+        pip_url: git+https://gitlab.com/meltano/tap-csv.git
+        variant: meltanolabs
       loaders:
       - name: target-postgres
-        variant: transferwise
-        pip_url: pipelinewise-target-postgres
         config:
           host: localhost
           port: 5432
           user: meltano
-          dbname: warehouse
+          database: demo
 - name: staging
 - name: prod
 plugins:
@@ -44,5 +41,5 @@ plugins:
     pip_url: git+https://github.com/MeltanoLabs/tap-csv.git
   loaders:
   - name: target-postgres
-    variant: transferwise
-    pip_url: pipelinewise-target-postgres
+    variant: meltanolabs
+    pip_url: git+https://github.com/MeltanoLabs/target-postgres.git
