@@ -3,7 +3,7 @@ Meltano Demo
 
 ## Overview
 
-[Meltano](https://meltano.com/) is an open source self-managed data integration platform. This repo uses Meltano to load data from a local CSV file into a PostgreSQL database running in a Docker container. This repo was created by following [this tutorial](https://docs.meltano.com/getting-started/) and using a different extractor.
+[Meltano](https://meltano.com/) is an open source self-managed data integration platform. This repo uses Meltano to load data from a local CSV file into a PostgreSQL database. This repo was created by following [this tutorial](https://docs.meltano.com/getting-started/) and using a different extractor.
 
 ## Repo Plugins
 - Extractor: [CSV](https://hub.meltano.com/extractors/tap-csv)
@@ -12,7 +12,6 @@ Meltano Demo
 ## Prerequisites
 - Python3
 - PostgreSQL
-- Docker
 - [Install Meltano](https://docs.meltano.com/getting-started/installation)
 
 ## Setup
@@ -22,12 +21,6 @@ Create a python [virtual environment](https://docs.python.org/3/library/venv.htm
 python -m venv </path/to/new/virtual/environment>
 
 source env/bin/activate
-```
-
-Create the database
-```bash
-CREATEDB warehouse
-CREATEUSER meltano
 ```
 
 Run the pipeline

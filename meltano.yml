@@ -35,7 +35,6 @@ environments:
           port: 5432
           user: meltano
           dbname: warehouse
-          default_target_schema: warehouse
 - name: staging
 - name: prod
 plugins:
