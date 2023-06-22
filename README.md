@@ -13,11 +13,24 @@ Meltano Demo
 - Python3
 - PostgreSQL
 - Docker
-[Install Meltano](https://docs.meltano.com/getting-started/installation)
+- [Install Meltano](https://docs.meltano.com/getting-started/installation)
 
+## Setup
+
+Create a python [virtual environment](https://docs.python.org/3/library/venv.html) for installing packages and activate it
+```bash
+python -m venv </path/to/new/virtual/environment>
+
+source env/bin/activate
+```
+
+Create the database
 ```bash
 CREATEDB warehouse
 CREATEUSER meltano
+```
 
+Run the pipeline
+```bash
 meltano run tap-csv target-postgres
 ```
